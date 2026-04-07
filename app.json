@@ -5,22 +5,23 @@
     "version": "1.0.0",
     "orientation": "portrait",
     "userInterfaceStyle": "light",
-    "newArchEnabled": true,
-    
-    "assetBundlePatterns": ["**/*"],
+    "assetBundlePatterns": [
+      "**/*"
+    ],
     "ios": {
       "supportsTablet": false,
       "bundleIdentifier": "com.medibook.app"
     },
     "android": {
-      "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#6C63FF"
-      },
       "package": "com.medibook.app",
-      "versionCode": 1,
-      "targetSdkVersion": 35
+      "versionCode": 1
     },
-    "plugins": []
+    "plugins": [],
+    "extra": {
+      "eas": {
+        "projectId": "f9cc8c63-2923-4fb5-989d-15865d388459"
+      }
+    },
+    "owner": "karthiknani229"
   }
 }
