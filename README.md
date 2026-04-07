@@ -89,6 +89,25 @@ npx expo start
 > Press `a` to open directly on a connected Android emulator.
 
 ---
+## 📱 Running the App (Expo)
+
+1. Install dependencies:
+   npm install
+
+2. Start the app:
+   npx expo start
+
+3. Scan QR code using Expo Go (Android)
+Add Demo Flow (VERY IMPORTANT)
+
+## 🧪 Demo Flow
+
+- Register a new account  
+- Browse service providers  
+- Select a provider  
+- Choose a time slot  
+- Book appointment  
+- View & cancel appointments  
 
 ## 📱 APK Build (EAS)
 
