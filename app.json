@@ -4,19 +4,11 @@
     "slug": "medibook",
     "version": "1.0.0",
     "orientation": "portrait",
-    "userInterfaceStyle": "light",
-    "assetBundlePatterns": [
-      "**/*"
-    ],
-    "ios": {
-      "supportsTablet": false,
-      "bundleIdentifier": "com.medibook.app"
-    },
+    "platforms": ["android"],
     "android": {
       "package": "com.medibook.app",
       "versionCode": 1
     },
-    "plugins": [],
     "extra": {
       "eas": {
         "projectId": "f9cc8c63-2923-4fb5-989d-15865d388459"
