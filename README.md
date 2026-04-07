@@ -1,8 +1,5 @@
-# MediBook — Appointment Booking App
-### Built with Expo SDK 54 · React Native 0.79 · React 19
-
-A production-ready React Native (Expo) application that allows users to register, browse service providers, book appointments, and manage bookings — with a polished, recruiter-ready UI.
-
+# MediBook — Appointment Booking Mobile Application (React Native)
+A scalable appointment scheduling mobile application built using React Native, demonstrating structured booking logic, clean architecture, and relational data modeling concepts.
 ---
 
 ## ✨ Features
@@ -114,7 +111,19 @@ APK download link appears in your Expo dashboard at https://expo.dev after ~5 mi
 # Requires Android Studio + Java 17
 npx expo run:android --variant release
 ```
+Although the current implementation uses local storage (AsyncStorage), the data model is designed using relational database principles.
 
+Core entities:
+- Users
+- Providers
+- Appointments
+
+Relationships:
+- A user can have multiple appointments
+- A provider can have multiple time slots
+- Each appointment links a user and provider with a specific date and time
+
+This structure can be directly mapped to relational schemas using foreign keys (user_id, provider_id), enabling scalability with SQL databases like PostgreSQL or MySQL.
 ---
 
 ## 🧪 How to Test
