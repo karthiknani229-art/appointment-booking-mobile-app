@@ -1,0 +1,120 @@
+export const providers = [
+  {
+    id: '1',
+    name: 'Dr. Priya Sharma',
+    category: 'Dentist',
+    specialty: 'Dental Surgery & Orthodontics',
+    rating: 4.8,
+    reviews: 128,
+    experience: '12 years',
+    image: 'https://randomuser.me/api/portraits/women/44.jpg',
+    location: 'Banjara Hills, Hyderabad',
+    fee: '₹500',
+    about:
+      'Dr. Priya Sharma is a highly experienced dentist specializing in cosmetic and general dentistry. She has helped thousands of patients achieve perfect smiles with her gentle approach.',
+    availableSlots: [
+      '09:00 AM', '10:00 AM', '11:00 AM',
+      '02:00 PM', '03:00 PM', '04:00 PM',
+    ],
+  },
+  {
+    id: '2',
+    name: 'Dr. Arjun Mehta',
+    category: 'Cardiologist',
+    specialty: 'Interventional Cardiology',
+    rating: 4.9,
+    reviews: 214,
+    experience: '18 years',
+    image: 'https://randomuser.me/api/portraits/men/32.jpg',
+    location: 'Jubilee Hills, Hyderabad',
+    fee: '₹800',
+    about:
+      'Dr. Arjun Mehta is a leading cardiologist with extensive experience in treating complex heart conditions. He is known for his patient-centric approach and cutting-edge techniques.',
+    availableSlots: [
+      '10:00 AM', '11:30 AM',
+      '01:00 PM', '03:30 PM', '05:00 PM',
+    ],
+  },
+  {
+    id: '3',
+    name: 'Dr. Sneha Reddy',
+    category: 'Dermatologist',
+    specialty: 'Cosmetic & Clinical Dermatology',
+    rating: 4.7,
+    reviews: 95,
+    experience: '9 years',
+    image: 'https://randomuser.me/api/portraits/women/68.jpg',
+    location: 'Madhapur, Hyderabad',
+    fee: '₹600',
+    about:
+      'Dr. Sneha Reddy is a board-certified dermatologist known for her expertise in skin disorders, acne treatment, and cosmetic procedures including laser therapy.',
+    availableSlots: [
+      '09:30 AM', '11:00 AM', '12:00 PM',
+      '02:30 PM', '04:00 PM',
+    ],
+  },
+  {
+    id: '4',
+    name: 'Dr. Vikram Nair',
+    category: 'Orthopedist',
+    specialty: 'Joint Replacement & Sports Medicine',
+    rating: 4.6,
+    reviews: 167,
+    experience: '15 years',
+    image: 'https://randomuser.me/api/portraits/men/52.jpg',
+    location: 'Secunderabad, Hyderabad',
+    fee: '₹700',
+    about:
+      'Dr. Vikram Nair is an orthopedic surgeon specializing in minimally invasive joint replacement surgeries and sports injury rehabilitation.',
+    availableSlots: [
+      '08:00 AM', '09:30 AM', '11:00 AM',
+      '01:30 PM', '03:00 PM',
+    ],
+  },
+  {
+    id: '5',
+    name: 'Dr. Ananya Krishnan',
+    category: 'Pediatrician',
+    specialty: 'Child Development & Immunology',
+    rating: 4.9,
+    reviews: 302,
+    experience: '11 years',
+    image: 'https://randomuser.me/api/portraits/women/26.jpg',
+    location: 'Gachibowli, Hyderabad',
+    fee: '₹450',
+    about:
+      'Dr. Ananya Krishnan is a beloved pediatrician known for her warm demeanor and comprehensive approach to child healthcare, from newborns to teenagers.',
+    availableSlots: [
+      '09:00 AM', '10:30 AM', '12:00 PM',
+      '02:00 PM', '03:30 PM', '05:00 PM',
+    ],
+  },
+  {
+    id: '6',
+    name: 'Dr. Rahul Gupta',
+    category: 'Neurologist',
+    specialty: 'Neurology & Stroke Medicine',
+    rating: 4.8,
+    reviews: 143,
+    experience: '20 years',
+    image: 'https://randomuser.me/api/portraits/men/71.jpg',
+    location: 'Kukatpally, Hyderabad',
+    fee: '₹900',
+    about:
+      'Dr. Rahul Gupta is one of the city\'s most respected neurologists, with expertise in treating epilepsy, migraines, and complex neurological disorders.',
+    availableSlots: [
+      '10:00 AM', '11:30 AM',
+      '02:00 PM', '04:00 PM',
+    ],
+  },
+];
+
+export const categories = [
+  { id: 'all', label: 'All', icon: '🏥' },
+  { id: 'Dentist', label: 'Dentist', icon: '🦷' },
+  { id: 'Cardiologist', label: 'Cardio', icon: '❤️' },
+  { id: 'Dermatologist', label: 'Skin', icon: '✨' },
+  { id: 'Orthopedist', label: 'Ortho', icon: '🦴' },
+  { id: 'Pediatrician', label: 'Pediatric', icon: '👶' },
+  { id: 'Neurologist', label: 'Neuro', icon: '🧠' },
+];
