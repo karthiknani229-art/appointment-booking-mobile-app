@@ -1,241 +1,118 @@
-# MediBook — Appointment Booking Mobile Application (React Native)
-A scalable appointment scheduling mobile application built using React Native, demonstrating structured booking logic, clean architecture, and relational data modeling concepts.
----
+# MediBook — Appointment Booking App
 
-## ✨ Features
+A scalable appointment scheduling mobile application built with React Native and Expo. Features structured booking logic, clean architecture, and relational data modeling concepts.
 
-| Feature | Details |
-|---|---|
-| 🔐 Authentication | Register, Login, Logout with AsyncStorage persistence |
-| 🏥 Provider Listing | Filterable list with search + category chips |
-| 👤 Provider Details | Full profile with stats, about, and available slots preview |
-| 📅 Appointment Booking | 14-day date picker + slot selection + booking summary |
-| 📋 Appointment Management | Upcoming/cancelled tabs, cancel with confirmation dialog |
-| 🎨 Polished UI | Cards, badges, empty states, loading indicators, tab navigation |
+## Tech Stack
 
----
+**Framework:** React Native, Expo SDK 54
 
-## 🧭 Tech Stack
+**Navigation:** React Navigation v7
 
-| Layer | Technology | Version |
-|---|---|---|
-| Framework | Expo SDK | ~54.0.0 |
-| React Native | React Native | 0.79.2 |
-| React | React | 19.0.0 |
-| Navigation | React Navigation | v7 |
-| Storage | AsyncStorage | 2.2.0 |
-| Gestures | react-native-gesture-handler | ~2.24.0 |
-| Safe Area | react-native-safe-area-context | ~5.4.0 |
-| Screens | react-native-screens | ~4.10.0 |
+**Storage:** AsyncStorage
 
-> **Note:** Uses New Architecture (`newArchEnabled: true`) — compatible with Expo Go SDK 54.
+**Deployment:** Expo Go (Android)
 
----
+## Features
 
-## 📁 Project Structure
+- User registration, login, and logout with session persistence
+- Provider listing with search and category filter
+- Full provider profile with stats and available slots
+- 14-day date picker with slot selection and booking summary
+- Appointment management — upcoming and cancelled tabs
+- Cancel appointment with confirmation dialog
+- Slot deduplication — same slot can't be booked twice for the same provider
+
+## Project Structure
 
 ```
 AppointmentApp/
-├── App.js                         # Entry — GestureHandlerRootView + AuthProvider
-├── app.json                       # Expo config (SDK 54, newArchEnabled, android package)
-├── eas.json                       # EAS build profiles (preview APK / production AAB)
-├── babel.config.js
-├── package.json
+├── App.js
+├── app.json
 └── src/
     ├── components/
-    │   ├── ProviderCard.js        # Reusable provider card with rating, fee, location
-    │   └── AppointmentCard.js     # Appointment card with status badge + cancel action
+    │   ├── ProviderCard.js
+    │   └── AppointmentCard.js
     ├── context/
-    │   ├── AuthContext.js         # Auth state: register, login, logout, session restore
-    │   └── AppContext.js          # Appointments: book, cancel, isSlotBooked
+    │   ├── AuthContext.js
+    │   └── AppContext.js
     ├── data/
-    │   └── mockProviders.js       # 6 mock doctors + category filter chips
+    │   └── mockProviders.js
     ├── navigation/
-    │   └── AppNavigator.js        # Auth stack / Main stack + bottom tab navigator
+    │   └── AppNavigator.js
     ├── screens/
-    │   ├── LoginScreen.js         # Email + password with validation + error handling
-    │   ├── RegisterScreen.js      # Full registration form with all field validations
-    │   ├── HomeScreen.js          # Doctor list with live search + category filter
-    │   ├── ProviderDetailsScreen.js  # Doctor profile, stats, slot preview, book CTA
-    │   ├── BookingScreen.js       # Date picker (14 days) + slots + booking summary
-    │   └── AppointmentsScreen.js  # Upcoming/cancelled tabs, user profile card
+    │   ├── LoginScreen.js
+    │   ├── RegisterScreen.js
+    │   ├── HomeScreen.js
+    │   ├── ProviderDetailsScreen.js
+    │   ├── BookingScreen.js
+    │   └── AppointmentsScreen.js
     └── utils/
-        └── storage.js             # Typed AsyncStorage wrapper with error handling
+        └── storage.js
 ```
 
----
+## Local Setup
 
-## 🚀 Setup & Run
-
-### Prerequisites
-- Node.js 18+
-- Expo Go app (SDK 54) installed on your Android device
-
-### Steps
+**Prerequisites:** Node.js 18+, Expo Go (SDK 54) on Android device
 
 ```bash
-# 1. Unzip and enter the project
+git clone https://github.com/karthiknani229-art/appointment-booking-mobile-app.git
 cd AppointmentApp
-
-# 2. Install all dependencies
 npm install
-
-# 3. Start the Expo dev server
 npx expo start
-
-# 4. Scan QR code with Expo Go (Android) — make sure Expo Go is SDK 54
 ```
 
-> Press `a` to open directly on a connected Android emulator.
+Scan the QR code with Expo Go on Android. Press `a` to open on a connected emulator.
 
----
-## 📱 Running the App (Expo)
+## Demo Flow
 
-1. Install dependencies:
-   npm install
+1. Register a new account
+2. Browse providers using search or category chips
+3. Select a provider and view details
+4. Pick a date from the 14-day scroller
+5. Select an available time slot
+6. Confirm booking and view summary
+7. Go to My Bookings to view upcoming appointments
+8. Cancel an appointment and check the Cancelled tab
 
-2. Start the app:
-   npx expo start
-
-3. Scan QR code using Expo Go (Android)
-Add Demo Flow (VERY IMPORTANT)
-
-## 🧪 Demo Flow
-
-- Register a new account  
-- Browse service providers  
-- Select a provider  
-- Choose a time slot  
-- Book appointment  
-- View & cancel appointments  
-
-## 📱 APK Build (EAS)
+## APK Build
 
 ```bash
-# Install EAS CLI
 npm install -g eas-cli
-
-# Login to Expo account (free)
 eas login
-
-# Build APK for internal distribution
 eas build -p android --profile preview
 ```
 
-APK download link appears in your Expo dashboard at https://expo.dev after ~5 minutes.
+APK download link appears in your Expo dashboard after ~5 minutes.
 
-### Local APK build (no Expo account needed)
+## Architecture Notes
 
-```bash
-# Requires Android Studio + Java 17
-npx expo run:android --variant release
+**Context API over Redux** — two contexts handle clean separation: `AuthContext` for identity/session and `AppContext` for appointments. No Redux boilerplate needed at this scope.
+
+**Slot deduplication** — a slot is locked per `(providerId + slot + date)` tuple. Booked slots render as disabled with strikethrough.
+
+**AsyncStorage schema:**
 ```
-Although the current implementation uses local storage (AsyncStorage), the data model is designed using relational database principles.
-
-Core entities:
-- Users
-- Providers
-- Appointments
-
-Relationships:
-- A user can have multiple appointments
-- A provider can have multiple time slots
-- Each appointment links a user and provider with a specific date and time
-
-This structure can be directly mapped to relational schemas using foreign keys (user_id, provider_id), enabling scalability with SQL databases like PostgreSQL or MySQL.
----
-
-## 🧪 How to Test
-
-1. **Register** a new account (any email + password ≥ 6 chars)
-2. **Browse** doctors — use the search bar or category chips
-3. Tap a doctor → **View Details** → tap **Book Appointment**
-4. **Pick a date** from the horizontal 14-day scroller
-5. **Select a time slot** — booked slots are crossed out and disabled
-6. **Confirm booking** — see the summary card before committing
-7. Go to **My Bookings tab** → view upcoming appointment
-8. Tap **Cancel Appointment** → confirm in the dialog
-9. Switch to **Cancelled tab** to see the cancelled record
-
----
-
-## 🏗️ Architecture Notes
-
-### Why Context API over Redux?
-Clean separation with two contexts — `AuthContext` (identity/session) and `AppContext` (appointments, only mounted when authenticated). No Redux boilerplate needed at this scope.
-
-### AsyncStorage Schema
-```
-APPT_USER         → { id, name, email, phone }         (active session)
-APPT_USERS_DB     → { [email]: { ...user, password } }  (user registry)
-APPT_APPOINTMENTS → { [userId]: [ ...appointments ] }   (per-user data)
+APPT_USER         → active session user
+APPT_USERS_DB     → user registry keyed by email
+APPT_APPOINTMENTS → appointments keyed by userId
 ```
 
-### Slot Deduplication
-A slot is locked per `(providerId + slot + date)` tuple — you can't book the same slot twice for the same doctor on the same day. The slot renders disabled with strikethrough.
+## Assumptions
 
-### SDK 54 / New Architecture
-- `newArchEnabled: true` in app.json — fully compatible with Expo Go SDK 54
-- `GestureHandlerRootView` wraps the app (required by react-navigation v7)
-- `@react-native-async-storage/async-storage@2.2.0` — the only version compatible with SDK 54 (v3.x has a known build issue)
+- Provider data is static mock data — no backend API
+- Slot availability is per-user, not globally shared
+- Authentication is local-only via AsyncStorage
+- Targets Android — code is iOS-compatible but not explicitly tested
 
----
+## Future Improvements
 
-## 🎨 Design Tokens
+- Real backend with Node.js, Express, and MongoDB
+- Real-time slot locking via WebSockets
+- Push notifications for appointment reminders
+- Reschedule flow without cancel and re-book
+- Razorpay payment gateway integration
+- OTP-based phone authentication
 
-| Token | Value |
-|---|---|
-| Primary | `#6C63FF` |
-| Background | `#F8F7FF` |
-| Surface | `#FFFFFF` |
-| Text Primary | `#1A1A2E` |
-| Text Muted | `#64748B` |
-| Success | `#22C55E` |
-| Danger | `#EF4444` |
-| Warning | `#F59E0B` |
+## Author
 
----
-
-## 🔮 Future Improvements
-
-- **Real backend** — Node.js + Express + MongoDB / Firebase
-- **Real-time slot locking** — WebSockets to prevent race conditions
-- **Push notifications** — expo-notifications for appointment reminders
-- **Reschedule** — modify booking without cancel/re-book flow
-- **Doctor ratings** — let users rate after appointment
-- **Location filter** — find doctors near you via GPS
-- **Payment gateway** — Razorpay integration for fee collection
-- **OTP login** — phone-based authentication
-
----
-
-## ⚙️ Assumptions
-
-- All provider data is static mock data (no backend API)
-- Available time slots are fixed per provider (not real-time inventory)
-- Slot availability is per-user (not globally shared across users)
-- Authentication is local-only via AsyncStorage (no JWT / OAuth)
-- App targets Android; code is iOS-compatible but not explicitly tested
-
----
-
-## 📦 Key Dependencies
-
-```json
-{
-  "expo": "~54.0.0",
-  "react": "19.0.0",
-  "react-native": "0.79.2",
-  "@react-native-async-storage/async-storage": "2.2.0",
-  "@react-navigation/native": "^7.0.14",
-  "@react-navigation/native-stack": "^7.2.0",
-  "@react-navigation/bottom-tabs": "^7.2.0",
-  "react-native-gesture-handler": "~2.24.0",
-  "react-native-safe-area-context": "~5.4.0",
-  "react-native-screens": "~4.10.0"
-}
-```
-
----
-
-*MediBook · React Native + Expo SDK 54 · Android*
+Penta Karthik — [GitHub](https://github.com/karthiknani229-art)
